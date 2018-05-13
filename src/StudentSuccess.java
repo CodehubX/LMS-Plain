@@ -1,7 +1,4 @@
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -28,7 +25,8 @@ public class StudentSuccess extends JFrame {
                 try {
                     frame = new StudentSuccess();
                     frame.setVisible(true);
-                    
+                    frame.setTitle("Student Panel");
+                    //frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -41,13 +39,14 @@ public class StudentSuccess extends JFrame {
      */
     public StudentSuccess() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 433);
+        setBounds(100, 100, 300, 280);
         contentPane = new JPanel();
         contentPane.setForeground(Color.GRAY);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLocationRelativeTo(null);
         setContentPane(contentPane);
 
-        JLabel lblStudentSection = new JLabel("Student : " + Cache.get("student_name"));
+        JLabel lblStudentSection = new JLabel(Cache.get("student_name"));
         lblStudentSection.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         JButton btnViewBooks = new JButton("View Available Books");
@@ -76,32 +75,34 @@ public class StudentSuccess extends JFrame {
             }
         });
         btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        
+
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
+                gl_contentPane.createParallelGroup(Alignment.CENTER)
+                        .addGap(GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
                         .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
                                 .addComponent(lblStudentSection))
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGap(132)
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnViewIssuedBooks, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 191, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(101, Short.MAX_VALUE))
+                        .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
+                                        .addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnViewIssuedBooks, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+                                )
+                        )
         );
+
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(lblStudentSection)
+                                .addComponent(lblStudentSection, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18)
                                 .addComponent(btnViewBooks, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18)
                                 .addComponent(btnViewIssuedBooks, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18)
                                 .addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(16, Short.MAX_VALUE))
+                                .addContainerGap())
         );
         contentPane.setLayout(gl_contentPane);
     }

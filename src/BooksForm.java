@@ -1,7 +1,4 @@
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,9 +6,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -37,6 +31,8 @@ public class BooksForm extends JFrame {
                 try {
                     frame = new BooksForm();
                     frame.setVisible(true);
+                    frame.setTitle("Add Book");
+                    frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -48,15 +44,12 @@ public class BooksForm extends JFrame {
      * Create the frame.
      */
     public BooksForm() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 404);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 360, 310);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLocationRelativeTo(null);
         setContentPane(contentPane);
-
-        JLabel lblAddBooks = new JLabel("Add Books");
-        lblAddBooks.setForeground(Color.GRAY);
-        lblAddBooks.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         JLabel lblCallNo = new JLabel("Call No:");
 
@@ -83,7 +76,7 @@ public class BooksForm extends JFrame {
         textField_4 = new JTextField();
         textField_4.setColumns(10);
 
-        JButton btnAddBooks = new JButton("Add Books");
+        JButton btnAddBooks = new JButton("Add Book");
         btnAddBooks.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String callno = textField.getText();
@@ -103,54 +96,35 @@ public class BooksForm extends JFrame {
                 }
             }
         });
-
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LibrarianSuccess.main(new String[]{});
-                frame.dispose();
-            }
-        });
         
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(150)
-                                                .addComponent(lblAddBooks))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addGap(18)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                        .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(lblCallNo)
-                                                        .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lblPublisher, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                                                        .addComponent(lblQuantity, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(lblAuthor, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lblPublisher, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                                                        .addComponent(lblQuantity, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(47)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))))
                                 .addContainerGap(125, Short.MAX_VALUE))
-                        .addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-                                .addGap(161)
-                                .addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(162, Short.MAX_VALUE))
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(359, Short.MAX_VALUE)
-                                .addComponent(btnBack)
-                                .addContainerGap())
+                        .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
+                                .addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
         );
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addComponent(lblAddBooks)
-                                .addGap(18)
+                                .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblCallNo)
                                         .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -172,8 +146,6 @@ public class BooksForm extends JFrame {
                                         .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(30)
                                 .addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(ComponentPlacement.RELATED)
-                                .addComponent(btnBack)
                                 .addContainerGap(53, Short.MAX_VALUE))
         );
         contentPane.setLayout(gl_contentPane);

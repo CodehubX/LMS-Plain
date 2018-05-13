@@ -1,11 +1,9 @@
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -23,6 +21,7 @@ public class ViewIssuedBooks extends JFrame {
                 try {
                     ViewIssuedBooks frame = new ViewIssuedBooks();
                     frame.setVisible(true);
+                    frame.setTitle("Issued Books");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -34,11 +33,12 @@ public class ViewIssuedBooks extends JFrame {
      * Create the frame.
      */
     public ViewIssuedBooks() {
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 600, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
+        setLocationRelativeTo(null);
         setContentPane(contentPane);
 
         String data[][] = null;
@@ -52,7 +52,7 @@ public class ViewIssuedBooks extends JFrame {
             int cols = rsmd.getColumnCount();
             column = new String[cols];
             for (int i = 1; i <= cols; i++) {
-                column[i - 1] = rsmd.getColumnName(i);
+                column[i - 1] = Util.capitalizeFirstLetter(rsmd.getColumnName(i));
             }
 
             rs.last();

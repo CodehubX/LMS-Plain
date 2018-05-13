@@ -1,7 +1,4 @@
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,9 +6,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -39,6 +34,8 @@ public class LibrarianForm extends JFrame {
                 try {
                     frame = new LibrarianForm();
                     frame.setVisible(true);
+                    frame.setTitle("Add Librarian");
+                    frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -50,15 +47,12 @@ public class LibrarianForm extends JFrame {
      * Create the frame.
      */
     public LibrarianForm() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 450);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 360, 320);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLocationRelativeTo(null);
         setContentPane(contentPane);
-
-        JLabel lblAddLibrarian = new JLabel("Add Librarian");
-        lblAddLibrarian.setForeground(Color.DARK_GRAY);
-        lblAddLibrarian.setFont(new Font("Tahoma", Font.PLAIN, 22));
 
         JLabel lblName = new JLabel("Name:");
 
@@ -102,26 +96,16 @@ public class LibrarianForm extends JFrame {
                 int i = LibrarianDao.save(name, password, email, address, city, contact);
                 if (i > 0) {
                     JOptionPane.showMessageDialog(LibrarianForm.this, "Librarian added successfully!");
-                    AdminSuccess.main(new String[]{});
-                    frame.dispose();
-
                 } else {
                     JOptionPane.showMessageDialog(LibrarianForm.this, "Sorry, unable to save!");
                 }
             }
         });
-        btnNewButton.setForeground(Color.DARK_GRAY);
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                AdminSuccess.main(new String[]{});
-                frame.dispose();
-            }
-        });
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addGap(20)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
@@ -141,23 +125,13 @@ public class LibrarianForm extends JFrame {
                                         .addComponent(passwordField))
                                 .addContainerGap(107, Short.MAX_VALUE))
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(151, Short.MAX_VALUE)
-                                .addComponent(lblAddLibrarian)
-                                .addGap(144))
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(160, Short.MAX_VALUE)
-                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-                                .addGap(133))
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(200, Short.MAX_VALUE)
-                                .addComponent(btnBack)
-                                .addGap(169))
+                                .addGroup(gl_contentPane.createSequentialGroup()
+                                        .addComponent(btnNewButton)))
         );
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addComponent(lblAddLibrarian)
-                                .addGap(18)
+                                .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addComponent(lblName)
@@ -184,10 +158,8 @@ public class LibrarianForm extends JFrame {
                                         .addComponent(lblContactNo)
                                         .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18)
-                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                                .addComponent(btnBack)
-                                .addGap(19))
+                                .addComponent(btnNewButton)
+                                .addContainerGap())
         );
         contentPane.setLayout(gl_contentPane);
     }

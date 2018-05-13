@@ -1,5 +1,3 @@
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,14 +7,10 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
 
 public class StudentLogin extends JFrame {
 
@@ -34,6 +28,8 @@ public class StudentLogin extends JFrame {
                 try {
                     frame = new StudentLogin();
                     frame.setVisible(true);
+                    frame.setTitle("Student Login");
+                    frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -46,14 +42,11 @@ public class StudentLogin extends JFrame {
      */
     public StudentLogin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 300, 180);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLocationRelativeTo(null);
         setContentPane(contentPane);
-
-        JLabel lblAdminLoginForm = new JLabel("Student Login Form");
-        lblAdminLoginForm.setForeground(Color.GRAY);
-        lblAdminLoginForm.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         JLabel lblEnterId = new JLabel("Enter Id:");
         
@@ -85,40 +78,33 @@ public class StudentLogin extends JFrame {
         
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(124)
-                                                .addComponent(lblAdminLoginForm))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(19)
+                                                .addContainerGap()
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                                         .addComponent(lblEnterName)
                                                         .addComponent(lblEnterId))
-                                                .addGap(47)
+                                                .addGap(20)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
                                                         .addComponent(idField)
-                                                        .addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
-                                .addContainerGap(107, Short.MAX_VALUE))
+                                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(187, Short.MAX_VALUE)
-                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-                                .addGap(151))
+                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
         );
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addComponent(lblAdminLoginForm)
-                                .addGap(26)
+                                .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblEnterId)
                                         .addComponent(idField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(28)
+                                .addGap(18)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblEnterName)
                                         .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(28)
+                                .addGap(20)
                                 .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(80, Short.MAX_VALUE))
         );

@@ -1,7 +1,4 @@
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,9 +6,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -37,6 +31,8 @@ public class StudentsForm extends JFrame {
                 try {
                     frame = new StudentsForm();
                     frame.setVisible(true);
+                    frame.setTitle("Add Student");
+                    frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -48,15 +44,12 @@ public class StudentsForm extends JFrame {
      * Create the frame.
      */
     public StudentsForm() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 404);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 380, 300);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLocationRelativeTo(null);
         setContentPane(contentPane);
-
-        JLabel lblAddBooks = new JLabel("Add Student");
-        lblAddBooks.setForeground(Color.GRAY);
-        lblAddBooks.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         JLabel lblName = new JLabel("Name:");
 
@@ -83,8 +76,8 @@ public class StudentsForm extends JFrame {
         textField_4 = new JTextField();
         textField_4.setColumns(10);
 
-        JButton btnAddBooks = new JButton("Add Books");
-        btnAddBooks.addActionListener(new ActionListener() {
+        JButton btnAddStudent = new JButton("Add Student");
+        btnAddStudent.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String name = textField.getText();
                 String email = textField_1.getText();
@@ -103,53 +96,32 @@ public class StudentsForm extends JFrame {
             }
         });
 
-        JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LibrarianSuccess.main(new String[]{});
-                frame.dispose();
-            }
-        });
-
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
-        gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(150)
-                                                .addComponent(lblAddBooks))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addGap(18)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                        .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lblAddress, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lblContact, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(47)
+                                                        .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lblAddress, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lblContact, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(20)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE))))
-                                .addContainerGap(125, Short.MAX_VALUE))
-                        .addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-                                .addGap(161)
-                                .addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(162, Short.MAX_VALUE))
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(359, Short.MAX_VALUE)
-                                .addComponent(btnBack)
+                                                        .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))))
                                 .addContainerGap())
+                        .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
+                                .addComponent(btnAddStudent, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
         );
-        gl_contentPane.setVerticalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
+        gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addComponent(lblAddBooks)
-                                .addGap(18)
+                                .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblName)
                                         .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -169,11 +141,8 @@ public class StudentsForm extends JFrame {
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblContact)
                                         .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(30)
-                                .addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(ComponentPlacement.RELATED)
-                                .addComponent(btnBack)
-                                .addContainerGap(53, Short.MAX_VALUE))
+                                .addGap(20)
+                                .addComponent(btnAddStudent, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
         );
         contentPane.setLayout(gl_contentPane);
     }

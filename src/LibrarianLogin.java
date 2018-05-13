@@ -1,7 +1,4 @@
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,9 +6,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -34,6 +28,8 @@ public class LibrarianLogin extends JFrame {
                 try {
                     frame = new LibrarianLogin();
                     frame.setVisible(true);
+                    frame.setTitle("Librarian Login");
+                    frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -46,14 +42,11 @@ public class LibrarianLogin extends JFrame {
      */
     public LibrarianLogin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 360, 180);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setLocationRelativeTo(null);
         setContentPane(contentPane);
-
-        JLabel lblAdminLoginForm = new JLabel("Librarian Login Form");
-        lblAdminLoginForm.setForeground(Color.GRAY);
-        lblAdminLoginForm.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
         JLabel lblEnterName = new JLabel("Enter Name:");
 
@@ -86,9 +79,6 @@ public class LibrarianLogin extends JFrame {
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(124)
-                                                .addComponent(lblAdminLoginForm))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addGap(19)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                                         .addComponent(lblEnterName)
@@ -99,23 +89,22 @@ public class LibrarianLogin extends JFrame {
                                                         .addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
                                 .addContainerGap(107, Short.MAX_VALUE))
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap(187, Short.MAX_VALUE)
+                                .addGap(130)
                                 .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-                                .addGap(151))
+                                .addGap(220))
         );
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addComponent(lblAdminLoginForm)
-                                .addGap(26)
+                                .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblEnterName)
                                         .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(28)
+                                .addGap(18)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblEnterPassword)
                                         .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
+                                .addGap(20)
                                 .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(80, Short.MAX_VALUE))
         );
