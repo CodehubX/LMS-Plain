@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
 public class AdminLogin extends JFrame {
-    
+
     private static final String ADMIN_USERNAME = "admin";
     private static final String ADMIN_PASSWORD = "admin123";
 
@@ -25,7 +25,7 @@ public class AdminLogin extends JFrame {
     /**
      * Launch the application.
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -45,7 +45,7 @@ public class AdminLogin extends JFrame {
      */
     public AdminLogin() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 380, 200);
+        setBounds(100, 100, 380, 180);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setLocationRelativeTo(null);
@@ -77,7 +77,7 @@ public class AdminLogin extends JFrame {
         passwordField = new JPasswordField();
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
+                gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
@@ -90,8 +90,7 @@ public class AdminLogin extends JFrame {
                                                         .addComponent(passwordField)
                                                         .addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
                                 .addContainerGap())
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGap(150)
+                        .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
                                 .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
         );
         gl_contentPane.setVerticalGroup(
