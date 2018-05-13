@@ -28,12 +28,15 @@ public class AdminLogin extends JFrame {
     /**
      * Launch the application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args){
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     frame = new AdminLogin();
                     frame.setVisible(true);
+                    frame.setTitle("Admin Login");
+                    frame.setResizable(false);
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -28,6 +28,7 @@ public class StudentSuccess extends JFrame {
                 try {
                     frame = new StudentSuccess();
                     frame.setVisible(true);
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

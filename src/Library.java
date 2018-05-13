@@ -14,6 +14,10 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Library extends JFrame {
 
@@ -26,8 +30,18 @@ public class Library extends JFrame {
 
     /**
      * Launch the application.
+     *
+     * @param args
      */
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex1) {
+            }
+        }
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -71,7 +85,7 @@ public class Library extends JFrame {
             }
         });
         btnLibrarianLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        
+
         JButton btnStudentLogin = new JButton("Student Login");
         btnStudentLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
@@ -80,7 +94,7 @@ public class Library extends JFrame {
             }
         });
         btnStudentLogin.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        
+
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
