@@ -1,7 +1,4 @@
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,10 +11,7 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class Library extends JFrame {
 
@@ -47,6 +41,8 @@ public class Library extends JFrame {
                 try {
                     frame = new Library();
                     frame.setVisible(true);
+                    frame.setTitle("Library Management");
+                    frame.setResizable(false);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -59,14 +55,10 @@ public class Library extends JFrame {
      */
     public Library() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 350);
+        setBounds(100, 100, 450, 280);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-
-        JLabel lblLibraryManagement = new JLabel("Library Management 2.0 - SD");
-        lblLibraryManagement.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        lblLibraryManagement.setForeground(Color.GRAY);
 
         JButton btnAdminLogin = new JButton("Admin Login");
         btnAdminLogin.addActionListener(new ActionListener() {
@@ -101,9 +93,6 @@ public class Library extends JFrame {
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(64)
-                                                .addComponent(lblLibraryManagement))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
                                                 .addGap(140)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
                                                         .addComponent(btnStudentLogin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
@@ -115,14 +104,12 @@ public class Library extends JFrame {
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(lblLibraryManagement)
-                                .addGap(32)
                                 .addComponent(btnAdminLogin, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addComponent(btnLibrarianLogin, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addComponent(btnStudentLogin, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(70, Short.MAX_VALUE))
+                                .addContainerGap())
         );
         contentPane.setLayout(gl_contentPane);
     }
