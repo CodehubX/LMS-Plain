@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2018 at 07:21 PM
+-- Generation Time: May 14, 2018 at 03:48 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -35,7 +35,7 @@ CREATE TABLE `books` (
   `author` varchar(100) NOT NULL,
   `publisher` varchar(100) NOT NULL,
   `quantity` int(10) NOT NULL,
-  `issued` int(10) NOT NULL,
+  `issued` int(10) NOT NULL DEFAULT '0',
   `added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -91,7 +91,9 @@ CREATE TABLE `librarian` (
 
 INSERT INTO `librarian` (`id`, `name`, `password`, `email`, `address`, `city`, `contact`) VALUES
 (1, 'sumedh', 'sumesh', 'sumesh@gmail.com', 'Kuch Bhi', 'noida', '9382393282'),
-(7, 'ko', 'la', 'kola@gmail.com', 'WB, India', 'Srirampore', '8652456987');
+(7, 'ko', 'la', 'kola@gmail.com', 'WB, India', 'Srirampore', '8652456987'),
+(8, 'Sos', 'sos123', 'sos@gmail.com', 'WB', 'Kolkata', '9826315687'),
+(9, 'Sos', 'sos123', 'sos@gmail.com', 'WB', 'Kolkata', '9826315687');
 
 -- --------------------------------------------------------
 
@@ -167,12 +169,12 @@ ALTER TABLE `issuebooks`
 -- AUTO_INCREMENT for table `librarian`
 --
 ALTER TABLE `librarian`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
