@@ -86,7 +86,7 @@ public class StudentsForm extends JFrame {
                 String contact = textField_4.getText();
                 int i = StudentDao.save(name, email, address, city, contact);
                 if (i > 0) {
-                    JOptionPane.showMessageDialog(StudentsForm.this, "Books added successfully!");
+                    JOptionPane.showMessageDialog(StudentsForm.this, "Student added successfully!");
                     LibrarianSuccess.main(new String[]{});
                     frame.dispose();
 

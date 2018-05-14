@@ -87,7 +87,7 @@ public class BooksForm extends JFrame {
                 int quantity = Integer.parseInt(squantity);
                 int i = BookDao.save(callno, name, author, publisher, quantity);
                 if (i > 0) {
-                    JOptionPane.showMessageDialog(BooksForm.this, "Books added successfully!");
+                    JOptionPane.showMessageDialog(BooksForm.this, "Book added successfully!");
                     LibrarianSuccess.main(new String[]{});
                     frame.dispose();
 
