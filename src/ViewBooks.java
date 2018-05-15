@@ -38,8 +38,8 @@ public class ViewBooks extends JFrame {
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
-        setLocationRelativeTo(null);
         setContentPane(contentPane);
+        Util.customizeFrame(this);
 
         String data[][] = null;
         String column[] = null;

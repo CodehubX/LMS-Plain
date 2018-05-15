@@ -46,8 +46,8 @@ public class IssueBookForm extends JFrame {
         setBounds(100, 100, 420, 210);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setLocationRelativeTo(null);
         setContentPane(contentPane);
+        Util.customizeFrame(this);
 
         JLabel lblBookName = new JLabel("Book Callno:");
 

@@ -43,8 +43,8 @@ public class StudentSuccess extends JFrame {
         contentPane = new JPanel();
         contentPane.setForeground(Color.GRAY);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setLocationRelativeTo(null);
         setContentPane(contentPane);
+        Util.customizeFrame(this);
 
         JLabel lblStudentSection = new JLabel(Cache.get("student_name"));
         lblStudentSection.setFont(new Font("Tahoma", Font.PLAIN, 18));

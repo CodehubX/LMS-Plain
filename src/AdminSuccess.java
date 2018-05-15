@@ -40,8 +40,8 @@ public class AdminSuccess extends JFrame {
         setBounds(100, 100, 470, 320);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setLocationRelativeTo(null);
         setContentPane(contentPane);
+        Util.customizeFrame(this);
 
         JButton btnNewButton = new JButton("Add Librarian");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));

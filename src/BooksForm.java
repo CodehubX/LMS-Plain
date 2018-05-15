@@ -48,8 +48,8 @@ public class BooksForm extends JFrame {
         setBounds(100, 100, 360, 310);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setLocationRelativeTo(null);
         setContentPane(contentPane);
+        Util.customizeFrame(this);
 
         JLabel lblCallNo = new JLabel("Call No:");
 

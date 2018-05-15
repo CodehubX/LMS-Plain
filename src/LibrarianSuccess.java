@@ -1,4 +1,3 @@
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -43,8 +42,8 @@ public class LibrarianSuccess extends JFrame {
         contentPane = new JPanel();
         contentPane.setForeground(Color.GRAY);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setLocationRelativeTo(null);
         setContentPane(contentPane);
+        Util.customizeFrame(this);
         
         JButton btnNewStudentButton = new JButton("Add Student");
         btnNewStudentButton.addActionListener(new ActionListener() {

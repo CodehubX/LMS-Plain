@@ -51,8 +51,8 @@ public class LibrarianForm extends JFrame {
         setBounds(100, 100, 360, 340);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setLocationRelativeTo(null);
         setContentPane(contentPane);
+        Util.customizeFrame(this);
 
         JLabel lblName = new JLabel("Name:");
 
