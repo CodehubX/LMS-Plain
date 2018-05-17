@@ -23,7 +23,7 @@ public class Util {
     }
     
     public static void customizeFrame(Frame frame){
-        Image icon = Toolkit.getDefaultToolkit().getImage(frame.getClass().getResource("./icons/256x256.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(frame.getClass().getResource("/icons/256x256.png"));
         //ImageIcon icon = new ImageIcon("./icons/256x256.png");
         frame.setIconImage(icon);
         frame.setLocationRelativeTo(null);
