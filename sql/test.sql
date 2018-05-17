@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2018 at 03:48 PM
+-- Generation Time: May 17, 2018 at 02:49 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -44,9 +44,9 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `callno`, `name`, `author`, `publisher`, `quantity`, `issued`, `added_date`) VALUES
-(1, 'A@4', 'C In Depth', 'Shrivastav', 'BPB', 2, 0, '2018-05-12 16:41:04'),
-(2, 'B@1', 'DBMS', 'Korth', 'Pearson', 2, 1, '2018-05-12 16:42:32'),
-(3, 'G@12', 'Let\'s see', 'Yashwant Kanetkar', 'BPB', 9, 1, '2018-05-12 16:42:42');
+(1, 'A@4', 'C In Depth', 'Shrivastav', 'BPB', 1, 1, '2018-05-17 00:04:50'),
+(2, 'B@1', 'DBMS', 'Korth', 'Pearson', 3, 0, '2018-05-14 14:25:12'),
+(3, 'G@12', 'Let\'s see', 'Yashwant Kanetkar', 'BPB', 10, 0, '2018-05-14 14:00:19');
 
 -- --------------------------------------------------------
 
@@ -66,8 +66,7 @@ CREATE TABLE `issuebooks` (
 --
 
 INSERT INTO `issuebooks` (`id`, `bookcallno`, `studentid`, `issueddate`) VALUES
-(8, 'B@1', 6, '2018-05-12 16:39:39'),
-(9, 'G@12', 4, '2018-05-12 16:40:38');
+(1, 'A@4', 7, '2018-05-17 00:04:50');
 
 -- --------------------------------------------------------
 
@@ -117,7 +116,8 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`id`, `name`, `email`, `address`, `city`, `contact`) VALUES
 (1, 'Subhajit', 'sd298@gmail.com', 'wb,india', 'janai', '9998328238'),
 (4, 'Sayani', 'sumesh@gmail.com', 'wb,india', 'kolkata', '9007026325'),
-(6, 'Abhisekh', 'abhi@gmail.com', 'wb,india', 'kolkata', '9239328232');
+(6, 'Abhisekh', 'abhi@gmail.com', 'wb,india', 'kolkata', '9239328232'),
+(7, 'Sayani', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -128,8 +128,7 @@ INSERT INTO `student` (`id`, `name`, `email`, `address`, `city`, `contact`) VALU
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `callno` (`callno`),
-  ADD UNIQUE KEY `callno_2` (`callno`);
+  ADD UNIQUE KEY `callno` (`callno`);
 
 --
 -- Indexes for table `issuebooks`
@@ -164,7 +163,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `issuebooks`
 --
 ALTER TABLE `issuebooks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `librarian`
 --
@@ -174,7 +173,7 @@ ALTER TABLE `librarian`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
