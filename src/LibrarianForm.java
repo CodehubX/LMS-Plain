@@ -48,7 +48,7 @@ public class LibrarianForm extends JFrame {
      */
     public LibrarianForm() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 360, 340);
+        setBounds(100, 100, 360, 320);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -158,7 +158,7 @@ public class LibrarianForm extends JFrame {
                                         .addComponent(lblContactNo)
                                         .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18)
-                                .addComponent(btnNewButton)
+                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
         contentPane.setLayout(gl_contentPane);

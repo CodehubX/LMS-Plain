@@ -10,7 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 public class BooksForm extends JFrame {
 
@@ -20,7 +22,8 @@ public class BooksForm extends JFrame {
     private JTextField textField_1;
     private JTextField textField_2;
     private JTextField textField_3;
-    private JTextField textField_4;
+    //private JTextField textField_4;
+    private JSpinner spinner;
 
     /**
      * Launch the application.
@@ -73,8 +76,10 @@ public class BooksForm extends JFrame {
         textField_3 = new JTextField();
         textField_3.setColumns(10);
 
-        textField_4 = new JTextField();
-        textField_4.setColumns(10);
+        //textField_4 = new JTextField();
+        //textField_4.setColumns(10);
+        SpinnerModel model = new SpinnerNumberModel(1, 1, 500, 1);
+        spinner = new JSpinner(model);
 
         JButton btnAddBooks = new JButton("Add Book");
         btnAddBooks.addActionListener(new ActionListener() {
@@ -83,8 +88,10 @@ public class BooksForm extends JFrame {
                 String name = textField_1.getText();
                 String author = textField_2.getText();
                 String publisher = textField_3.getText();
-                String squantity = textField_4.getText();
+                //String squantity = textField_4.getText();
+                String squantity = String.valueOf(spinner.getValue());
                 int quantity = Integer.parseInt(squantity);
+
                 int i = BookDao.save(callno, name, author, publisher, quantity);
                 if (i > 0) {
                     JOptionPane.showMessageDialog(BooksForm.this, "Book added successfully!");
@@ -96,7 +103,7 @@ public class BooksForm extends JFrame {
                 }
             }
         });
-        
+
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
                 gl_contentPane.createParallelGroup(Alignment.CENTER)
@@ -112,7 +119,8 @@ public class BooksForm extends JFrame {
                                                         .addComponent(lblQuantity, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(47)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                                        //.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(spinner, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
@@ -143,7 +151,8 @@ public class BooksForm extends JFrame {
                                 .addGap(18)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblQuantity)
-                                        .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        //.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(spinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGap(30)
                                 .addComponent(btnAddBooks, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(53, Short.MAX_VALUE))
