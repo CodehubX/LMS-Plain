@@ -2,6 +2,7 @@ package com.sd.form.admin;
 
 import com.sd.dao.LibrarianDao;
 import com.sd.support.util.Util;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -77,25 +78,25 @@ public class DeleteLibrarianForm extends JFrame {
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGap(20)
-                                .addComponent(lblEnterId)
-                                .addGap(20)
-                                .addComponent(textField, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                        .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                .addGap(90)
-                                .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-                                .addGap(120))
+                .addGroup(gl_contentPane.createSequentialGroup()
+                        .addGap(20)
+                        .addComponent(lblEnterId)
+                        .addGap(20)
+                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+                        .addGap(90)
+                        .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+                        .addGap(120))
         );
         gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblEnterId))
-                                .addGap(20)
-                                .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                .addGroup(gl_contentPane.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEnterId))
+                        .addGap(20)
+                        .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
         );
         contentPane.setLayout(gl_contentPane);
     }

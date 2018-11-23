@@ -13,7 +13,7 @@ public class DB {
             Depricated
             */
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/librarymsswing", "user", "user");
         } catch (Exception e) {
             System.out.println(e);
         }

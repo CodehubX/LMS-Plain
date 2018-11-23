@@ -2,6 +2,7 @@ package com.sd.form.librarian;
 
 import com.sd.dao.ReturnBookDao;
 import com.sd.support.util.Util;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -53,9 +54,9 @@ public class ReturnBookForm extends JFrame {
         setContentPane(contentPane);
         Util.customizeFrame(this);
 
-        JLabel lblBookCallno = new JLabel("Book Callno:");
+        JLabel lblBookCallno = new JLabel("Book ID");
 
-        JLabel lblStudentId = new JLabel("Student Id:");
+        JLabel lblStudentId = new JLabel("Student ID");
 
         textField = new JTextField();
         textField.setColumns(10);
@@ -66,11 +67,12 @@ public class ReturnBookForm extends JFrame {
         JButton btnReturnBook = new JButton("Return Book");
         btnReturnBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String bookcallno = textField.getText();
-                int studentid = Integer.parseInt(textField_1.getText());
-                int i = ReturnBookDao.delete(bookcallno, studentid);
-                if (i > 0) {
+                String bookId = textField.getText();
+                int studentId = Integer.parseInt(textField_1.getText());
+                int i = ReturnBookDao.delete(bookId, studentId);
+                if (i == 0) {
                     JOptionPane.showMessageDialog(ReturnBookForm.this, "Book returned successfully!");
+                    frame.dispose();
                 } else {
                     JOptionPane.showMessageDialog(ReturnBookForm.this, "Sorry, unable to return book!");
                 }
@@ -88,7 +90,7 @@ public class ReturnBookForm extends JFrame {
                                 .addGap(20)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
                                         .addComponent(lblStudentId, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblBookCallno,  GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblBookCallno, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
                                 .addGap(20)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)

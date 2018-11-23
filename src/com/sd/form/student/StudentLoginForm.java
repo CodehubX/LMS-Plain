@@ -3,6 +3,7 @@ package com.sd.form.student;
 import com.sd.dao.StudentDao;
 import com.sd.support.util.Util;
 import com.sd.support.util.Cache;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -47,15 +48,15 @@ public class StudentLoginForm extends JFrame {
      */
     public StudentLoginForm() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 300, 180);
+        setBounds(100, 100, 260, 180);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         Util.customizeFrame(this);
 
-        JLabel lblEnterId = new JLabel("Enter Id:");
-        
-        JLabel lblEnterName = new JLabel("Enter Name:");
+        JLabel lblEnterId = new JLabel("ID");
+
+        JLabel lblEnterName = new JLabel("Name");
 
         textField = new JTextField();
         textField.setColumns(10);
@@ -80,7 +81,7 @@ public class StudentLoginForm extends JFrame {
             }
         });
 
-        
+
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
                 gl_contentPane.createParallelGroup(Alignment.CENTER)
@@ -96,7 +97,7 @@ public class StudentLoginForm extends JFrame {
                                                         .addComponent(idField)
                                                         .addComponent(textField, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.DEFAULT_SIZE))
         );
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)

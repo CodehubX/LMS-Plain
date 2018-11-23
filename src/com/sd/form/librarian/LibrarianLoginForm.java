@@ -1,7 +1,9 @@
 package com.sd.form.librarian;
 
 import com.sd.dao.LibrarianDao;
+import com.sd.support.util.Cache;
 import com.sd.support.util.Util;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -52,9 +54,9 @@ public class LibrarianLoginForm extends JFrame {
         setContentPane(contentPane);
         Util.customizeFrame(this);
 
-        JLabel lblEnterName = new JLabel("Enter Name:");
+        JLabel lblEnterName = new JLabel("Id");
 
-        JLabel lblEnterPassword = new JLabel("Enter Password:");
+        JLabel lblEnterPassword = new JLabel("Password");
 
         textField = new JTextField();
         textField.setColumns(10);
@@ -62,10 +64,11 @@ public class LibrarianLoginForm extends JFrame {
         JButton btnLogin = new JButton("Login");
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String name = textField.getText();
+                String id = textField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 //System.out.println(name+" "+password);
-                if (LibrarianDao.validate(name, password)) {
+                if (LibrarianDao.validate(id, password)) {
+                    Cache.add("librarianId", id);
                     LibrarianPanel.main(new String[]{});
                     frame.dispose();
                 } else {

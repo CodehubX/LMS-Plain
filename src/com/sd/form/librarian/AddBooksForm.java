@@ -2,6 +2,7 @@ package com.sd.form.librarian;
 
 import com.sd.dao.BookDao;
 import com.sd.support.util.Util;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -58,7 +59,7 @@ public class AddBooksForm extends JFrame {
         setContentPane(contentPane);
         Util.customizeFrame(this);
 
-        JLabel lblCallNo = new JLabel("Call No:");
+        JLabel lblCallNo = new JLabel("Book ID:");
 
         JLabel lblName = new JLabel("Name:");
 
@@ -88,7 +89,7 @@ public class AddBooksForm extends JFrame {
         JButton btnAddBooks = new JButton("Add Book");
         btnAddBooks.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String callno = textField.getText();
+                String bookNo = textField.getText();
                 String name = textField_1.getText();
                 String author = textField_2.getText();
                 String publisher = textField_3.getText();
@@ -96,10 +97,10 @@ public class AddBooksForm extends JFrame {
                 String squantity = String.valueOf(spinner.getValue());
                 int quantity = Integer.parseInt(squantity);
 
-                int i = BookDao.save(callno, name, author, publisher, quantity);
+                int i = BookDao.save(bookNo, name, author, publisher, quantity);
                 if (i > 0) {
                     JOptionPane.showMessageDialog(AddBooksForm.this, "Book added successfully!");
-                    LibrarianPanel.main(new String[]{});
+                    //LibrarianPanel.main(new String[]{});
                     frame.dispose();
 
                 } else {

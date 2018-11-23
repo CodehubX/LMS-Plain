@@ -1,7 +1,9 @@
 package com.sd.form.librarian;
 
 import com.sd.dao.IssueBookDao;
+import com.sd.support.util.Cache;
 import com.sd.support.util.Util;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -53,7 +55,7 @@ public class IssueBookForm extends JFrame {
         setContentPane(contentPane);
         Util.customizeFrame(this);
 
-        JLabel lblBookName = new JLabel("Book Callno:");
+        JLabel lblBookName = new JLabel("Book ID");
 
         textField_1 = new JTextField();
         textField_1.setColumns(10);
@@ -61,29 +63,21 @@ public class IssueBookForm extends JFrame {
         textField_2 = new JTextField();
         textField_2.setColumns(10);
 
-        JLabel lblStudentId = new JLabel("Student Id:");
+        JLabel lblStudentId = new JLabel("Student ID");
 
         JButton btnIssueBook = new JButton("Issue Book");
         btnIssueBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                String bookcallno = textField_1.getText();
-                int studentid = Integer.parseInt(textField_2.getText());
-
-                if (IssueBookDao.checkBook(bookcallno)) {
-
-                    int i = IssueBookDao.save(bookcallno, studentid);
-                    if (i > 0) {
-                        JOptionPane.showMessageDialog(IssueBookForm.this, "Book issued successfully!");
-                        frame.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(IssueBookForm.this, "Sorry, unable to issue!");
-                    }//end of save if-else
-
+                String bookId = textField_1.getText();
+                int studentId = Integer.parseInt(textField_2.getText());
+                String librarianId = Cache.get("librarianId");
+                if (IssueBookDao.save(bookId, studentId, Integer.parseInt(librarianId)) == 0) {
+                    JOptionPane.showMessageDialog(IssueBookForm.this, "Book issued successfully!");
+                    frame.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(IssueBookForm.this, "Sorry, Callno doesn't exist!");
-                }//end of checkbook if-else
-
+                    JOptionPane.showMessageDialog(IssueBookForm.this, "Sorry, unable to issue!");
+                }
             }
         });
 

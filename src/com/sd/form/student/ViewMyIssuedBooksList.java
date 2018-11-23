@@ -1,8 +1,11 @@
 package com.sd.form.student;
 
+import com.sd.dao.IssueBookDao;
+import com.sd.form.librarian.ViewIssuedBooksList;
 import com.sd.support.util.Util;
 import com.sd.support.db.DB;
 import com.sd.support.util.Cache;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.Connection;
@@ -10,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -19,12 +23,14 @@ public class ViewMyIssuedBooksList extends JFrame {
 
     private JPanel contentPane;
     private JTable table;
+    
+    private static ViewMyIssuedBooksList frame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    ViewMyIssuedBooksList frame = new ViewMyIssuedBooksList();
+                    frame = new ViewMyIssuedBooksList();
                     frame.setVisible(true);
                     frame.setTitle("My Books");
                 } catch (Exception e) {
@@ -46,42 +52,20 @@ public class ViewMyIssuedBooksList extends JFrame {
         setContentPane(contentPane);
         Util.customizeFrame(this);
 
-        String data[][] = null;
-        String column[] = null;
-        try {
-            Connection con = DB.getConnection();
-            PreparedStatement ps = con.prepareStatement("select bookcallno,issueddate from issuebooks where studentid=?", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ps.setString(1, Cache.get("student_id"));
-            ResultSet rs = ps.executeQuery();
+        Object[] myIssuedBookData = IssueBookDao.getAllAsTable(Cache.get("student_id"));
 
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int cols = rsmd.getColumnCount();
-            column = new String[cols];
-            for (int i = 1; i <= cols; i++) {
-                column[i - 1] = Util.capitalizeFirstLetter(rsmd.getColumnName(i));
-            }
+        if (myIssuedBookData != null) {
+            String[][] data = (String[][]) myIssuedBookData[0];
+            String[] column = (String[]) myIssuedBookData[1];
 
-            rs.last();
-            int rows = rs.getRow();
-            rs.beforeFirst();
+            table = new JTable(data, column);
+            JScrollPane sp = new JScrollPane(table);
 
-            data = new String[rows][cols];
-            int count = 0;
-            while (rs.next()) {
-                for (int i = 1; i <= cols; i++) {
-                    data[count][i - 1] = rs.getString(i);
-                }
-                count++;
-            }
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
+            contentPane.add(sp, BorderLayout.CENTER);
+        } else {
+            JOptionPane.showMessageDialog(ViewMyIssuedBooksList.this, "Error retrieving data");
+            frame.dispose();
         }
-
-        table = new JTable(data, column);
-        JScrollPane sp = new JScrollPane(table);
-
-        contentPane.add(sp, BorderLayout.CENTER);
     }
 
 }

@@ -1,7 +1,10 @@
 package com.sd.form.admin;
 
+import com.sd.dao.LibrarianDao;
+import com.sd.form.librarian.IssueBookForm;
 import com.sd.support.util.Util;
 import com.sd.support.db.DB;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.Connection;
@@ -9,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -18,12 +22,13 @@ public class ViewLibrarianList extends JFrame {
 
     private JPanel contentPane;
     private JTable table;
+    private static ViewLibrarianList frame;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    ViewLibrarianList frame = new ViewLibrarianList();
+                    frame = new ViewLibrarianList();
                     frame.setVisible(true);
                     frame.setTitle("Librarians");
                 } catch (Exception e) {
@@ -44,42 +49,21 @@ public class ViewLibrarianList extends JFrame {
         contentPane.setLayout(new BorderLayout(0, 0));
         setContentPane(contentPane);
         Util.customizeFrame(this);
-        
-        String data[][] = null;
-        String column[] = null;
-        try {
-            Connection con = DB.getConnection();
-            PreparedStatement ps = con.prepareStatement("select * from librarian", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            ResultSet rs = ps.executeQuery();
 
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int cols = rsmd.getColumnCount();
-            column = new String[cols];
-            for (int i = 1; i <= cols; i++) {
-                column[i - 1] = Util.capitalizeFirstLetter(rsmd.getColumnName(i));
-            }
+        Object[] librarianData = LibrarianDao.getAllAsTable();
 
-            rs.last();
-            int rows = rs.getRow();
-            rs.beforeFirst();
+        if (librarianData != null) {
+            String[][] data = (String[][]) librarianData[0];
+            String[] column = (String[]) librarianData[1];
 
-            data = new String[rows][cols];
-            int count = 0;
-            while (rs.next()) {
-                for (int i = 1; i <= cols; i++) {
-                    data[count][i - 1] = rs.getString(i);
-                }
-                count++;
-            }
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
+            table = new JTable(data, column);
+            JScrollPane sp = new JScrollPane(table);
+
+            contentPane.add(sp, BorderLayout.CENTER);
+        } else {
+            JOptionPane.showMessageDialog(ViewLibrarianList.this, "Error retrieving data");
+            frame.dispose();
         }
-
-        table = new JTable(data, column);
-        JScrollPane sp = new JScrollPane(table);
-
-        contentPane.add(sp, BorderLayout.CENTER);
     }
-    
+
 }

@@ -2,6 +2,7 @@ package com.sd.form.admin;
 
 import com.sd.dao.LibrarianDao;
 import com.sd.support.util.Util;
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -97,11 +98,11 @@ public class AddLibrarianForm extends JFrame {
                 String city = textField_3.getText();
                 String contact = textField_4.getText();
 
-                int i = LibrarianDao.save(name, password, email, address, city, contact);
-                if (i > 0) {
-                    JOptionPane.showMessageDialog(AddLibrarianForm.this, "Librarian added successfully!");
+                int id = LibrarianDao.save(name, password, email, address, city, contact);
+                if (id > -1) {
+                    JOptionPane.showMessageDialog(AddLibrarianForm.this, "Librarian added. ID = " + id);
                 } else {
-                    JOptionPane.showMessageDialog(AddLibrarianForm.this, "Sorry, unable to save!");
+                    JOptionPane.showMessageDialog(AddLibrarianForm.this, "Sorry, unable to add!");
                 }
             }
         });

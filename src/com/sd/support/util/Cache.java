@@ -4,12 +4,11 @@ package com.sd.support.util;
 import java.util.*;
 
 /**
- *
  * @author subha
  */
 public class Cache {
 
-    static HashMap< String, String> entries;
+    private static HashMap<String, String> entries;
 
     static {
         entries = new HashMap<>();
