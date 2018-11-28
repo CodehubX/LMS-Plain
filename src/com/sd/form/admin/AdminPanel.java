@@ -13,8 +13,15 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle;
 
 public class AdminPanel extends JFrame {
+    
+    private final int BUTTON_HEIGHT = 50;
+    private final int BUTTON_WIDTH = 180;
+    private final int MARGIN_GAP = 80;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
 
     static AdminPanel frame;
     private JPanel contentPane;
@@ -42,11 +49,11 @@ public class AdminPanel extends JFrame {
      */
     public AdminPanel() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 470, 320);
+        //setBounds(100, 100, 470, 320);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        Util.customizeFrame(this);
+        //Util.customizeFrame(this);
 
         JButton btnNewButton = new JButton("Add Librarian");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -84,27 +91,32 @@ public class AdminPanel extends JFrame {
         gl_contentPane.setHorizontalGroup(
                 gl_contentPane.createParallelGroup(Alignment.TRAILING)
                         .addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-                                .addGap(134)
+                                .addGap(MARGIN_GAP)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnDeleteLibrarian, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnViewLibrarian, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(109, Short.MAX_VALUE))
+                                        .addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnDeleteLibrarian, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnViewLibrarian, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE))
+                                .addGap(MARGIN_GAP)
+                        )
         );
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18)
-                                .addComponent(btnViewLibrarian, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18)
-                                .addComponent(btnDeleteLibrarian, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18)
-                                .addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnViewLibrarian, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnDeleteLibrarian, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnLogout, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()
+                        )
         );
         contentPane.setLayout(gl_contentPane);
+        
+        pack();
+        Util.customizeFrame(this);
     }
 }

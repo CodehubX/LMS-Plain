@@ -16,8 +16,15 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle;
 
 public class DeleteLibrarianForm extends JFrame {
+    
+    private final int BUTTON_HEIGHT = 30;
+    private final int BUTTON_WIDTH = 110;
+    private final int MARGIN_GAP = 140;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
 
     static DeleteLibrarianForm frame;
     private JPanel contentPane;
@@ -46,13 +53,13 @@ public class DeleteLibrarianForm extends JFrame {
      */
     public DeleteLibrarianForm() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 300, 140);
+        //setBounds(100, 100, 300, 140);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        Util.customizeFrame(this);
+        //Util.customizeFrame(this);
 
-        JLabel lblEnterId = new JLabel("Enter Id:");
+        JLabel lblEnterId = new JLabel("Librarian ID");
 
         textField = new JTextField();
         textField.setColumns(10);
@@ -77,17 +84,15 @@ public class DeleteLibrarianForm extends JFrame {
         btnDelete.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
-        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
                 .addGroup(gl_contentPane.createSequentialGroup()
-                        .addGap(20)
+                        .addContainerGap()
                         .addComponent(lblEnterId)
-                        .addGap(20)
-                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                        .addGap(90)
-                        .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-                        .addGap(120))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, TEXTBOX_WIDTH, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                )
+                .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
         );
         gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                 .addGroup(gl_contentPane.createSequentialGroup()
@@ -95,9 +100,12 @@ public class DeleteLibrarianForm extends JFrame {
                         .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                 .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblEnterId))
-                        .addGap(20)
-                        .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE))
         );
         contentPane.setLayout(gl_contentPane);
+        
+        pack();
+        Util.customizeFrame(this);
     }
 }

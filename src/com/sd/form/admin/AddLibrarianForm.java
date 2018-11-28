@@ -20,15 +20,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AddLibrarianForm extends JFrame {
+    
+    private final int BUTTON_HEIGHT = 32;
+    private final int BUTTON_WIDTH = 140;
+    private final int MARGIN_GAP = 18;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
 
     static AddLibrarianForm frame;
     private JPanel contentPane;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JTextField textField_4;
-    private JPasswordField passwordField;
+    private JTextField textFieldName;
+    private JTextField textFieldEmail;
+    private JTextField textFieldAddress;
+    private JTextField textFieldCity;
+    private JTextField textFieldContactNo;
+    private JPasswordField textFieldPassword;
 
     /**
      * Launch the application.
@@ -53,11 +59,11 @@ public class AddLibrarianForm extends JFrame {
      */
     public AddLibrarianForm() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 360, 320);
+        //setBounds(100, 100, 360, 320);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        Util.customizeFrame(this);
+        //Util.customizeFrame(this);
 
         JLabel lblName = new JLabel("Name:");
 
@@ -71,32 +77,32 @@ public class AddLibrarianForm extends JFrame {
 
         JLabel lblContactNo = new JLabel("Contact No:");
 
-        textField = new JTextField();
-        textField.setColumns(10);
+        textFieldName = new JTextField();
+        textFieldName.setColumns(10);
 
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
+        textFieldEmail = new JTextField();
+        textFieldEmail.setColumns(10);
 
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
+        textFieldAddress = new JTextField();
+        textFieldAddress.setColumns(10);
 
-        textField_3 = new JTextField();
-        textField_3.setColumns(10);
+        textFieldCity = new JTextField();
+        textFieldCity.setColumns(10);
 
-        textField_4 = new JTextField();
-        textField_4.setColumns(10);
+        textFieldContactNo = new JTextField();
+        textFieldContactNo.setColumns(10);
 
-        passwordField = new JPasswordField();
+        textFieldPassword = new JPasswordField();
 
         JButton btnNewButton = new JButton("Add Librarian");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String name = textField.getText();
-                String password = String.valueOf(passwordField.getPassword());
-                String email = textField_1.getText();
-                String address = textField_2.getText();
-                String city = textField_3.getText();
-                String contact = textField_4.getText();
+                String name = textFieldName.getText();
+                String password = String.valueOf(textFieldPassword.getPassword());
+                String email = textFieldEmail.getText();
+                String address = textFieldAddress.getText();
+                String city = textFieldCity.getText();
+                String contact = textFieldContactNo.getText();
 
                 int id = LibrarianDao.save(name, password, email, address, city, contact);
                 if (id > -1) {
@@ -109,64 +115,65 @@ public class AddLibrarianForm extends JFrame {
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
-        gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.CENTER)
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGap(20)
+                                .addContainerGap(MARGIN_GAP, MARGIN_GAP)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                        .addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                                        .addComponent(lblPassword, GroupLayout.DEFAULT_SIZE, LABEL_WIDTH, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblName)
-                                        .addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblAddress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblContactNo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(58)
+                                        .addComponent(lblEmail)
+                                        .addComponent(lblAddress)
+                                        .addComponent(lblCity)
+                                        .addComponent(lblContactNo))
+                                .addGap(2*MARGIN_GAP)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                        .addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                        .addComponent(textField_3, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                        .addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                        .addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                        .addComponent(textField, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                        .addComponent(passwordField))
-                                .addContainerGap(107, Short.MAX_VALUE))
+                                        .addComponent(textFieldContactNo, GroupLayout.DEFAULT_SIZE, TEXTBOX_WIDTH, Short.MAX_VALUE)
+                                        .addComponent(textFieldCity)
+                                        .addComponent(textFieldAddress)
+                                        .addComponent(textFieldEmail)
+                                        .addComponent(textFieldName)
+                                        .addComponent(textFieldPassword))
+                                .addContainerGap(MARGIN_GAP, MARGIN_GAP)
+                        )
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGroup(gl_contentPane.createSequentialGroup()
-                                        .addComponent(btnNewButton)))
+                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
+                        )
         );
-        gl_contentPane.setVerticalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
+        gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addComponent(lblName)
-                                                .addGap(18)
-                                                .addComponent(lblPassword))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18)
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(lblName)
+                                        .addComponent(textFieldName))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                        .addComponent(lblPassword)
+                                        .addComponent(textFieldPassword))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblEmail)
-                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
+                                        .addComponent(textFieldEmail))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblAddress)
-                                        .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
+                                        .addComponent(textFieldAddress))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblCity)
-                                        .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
+                                        .addComponent(textFieldCity))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblContactNo)
-                                        .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
-                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                                        .addComponent(textFieldContactNo))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE)
+                                //.addContainerGap()
+                        )
         );
         contentPane.setLayout(gl_contentPane);
+        
+        pack();
+        Util.customizeFrame(this);
     }
 
 }

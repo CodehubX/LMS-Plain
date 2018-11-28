@@ -17,13 +17,20 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle;
 
 public class ReturnBookForm extends JFrame {
 
+    private final int BUTTON_HEIGHT = 30;
+    private final int BUTTON_WIDTH = 80;
+    private final int MARGIN_GAP = 140;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
+
     static ReturnBookForm frame;
     private JPanel contentPane;
-    private JTextField textField;
-    private JTextField textField_1;
+    private JTextField textFieldBookCallNo;
+    private JTextField textFieldStudentId;
 
     /**
      * Launch the application.
@@ -48,27 +55,27 @@ public class ReturnBookForm extends JFrame {
      */
     public ReturnBookForm() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 330, 210);
+        //setBounds(100, 100, 330, 210);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        Util.customizeFrame(this);
+        //Util.customizeFrame(this);
 
         JLabel lblBookCallno = new JLabel("Book ID");
 
         JLabel lblStudentId = new JLabel("Student ID");
 
-        textField = new JTextField();
-        textField.setColumns(10);
+        textFieldBookCallNo = new JTextField();
+        textFieldBookCallNo.setColumns(10);
 
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
+        textFieldStudentId = new JTextField();
+        textFieldStudentId.setColumns(10);
 
-        JButton btnReturnBook = new JButton("Return Book");
+        JButton btnReturnBook = new JButton("Return");
         btnReturnBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String bookId = textField.getText();
-                int studentId = Integer.parseInt(textField_1.getText());
+                String bookId = textFieldBookCallNo.getText();
+                int studentId = Integer.parseInt(textFieldStudentId.getText());
                 int i = ReturnBookDao.delete(bookId, studentId);
                 if (i == 0) {
                     JOptionPane.showMessageDialog(ReturnBookForm.this, "Book returned successfully!");
@@ -79,46 +86,38 @@ public class ReturnBookForm extends JFrame {
             }
         });
 
-        JLabel lblNewLabel = new JLabel("Note: Check the book properly!");
-        lblNewLabel.setForeground(Color.RED);
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
-        gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.CENTER)
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
-                                .addGap(20)
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                        .addComponent(lblStudentId, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblBookCallno, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE))
-                                .addGap(20)
+                                .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())
-                        .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
-                                .addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
-                                .addComponent(lblNewLabel))
+                                        .addComponent(lblStudentId)
+                                        .addComponent(lblBookCallno))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(textFieldStudentId, GroupLayout.PREFERRED_SIZE, TEXTBOX_WIDTH, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(textFieldBookCallNo, GroupLayout.PREFERRED_SIZE, TEXTBOX_WIDTH, GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap()
+                        )
+                        .addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
         );
-        gl_contentPane.setVerticalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
+        gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblBookCallno)
-                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
+                                        .addComponent(textFieldBookCallNo))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblStudentId)
-                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(20)
-                                .addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-                                .addGap(20)
-                                .addComponent(lblNewLabel)
-                                .addGap(72))
+                                        .addComponent(textFieldStudentId))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnReturnBook, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE))
         );
         contentPane.setLayout(gl_contentPane);
+        
+        pack();
+        Util.customizeFrame(this);
     }
 
 }

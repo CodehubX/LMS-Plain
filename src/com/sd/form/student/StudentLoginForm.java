@@ -17,13 +17,20 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle;
 
 public class StudentLoginForm extends JFrame {
 
+    private final int BUTTON_HEIGHT = 30;
+    private final int BUTTON_WIDTH = 80;
+    private final int MARGIN_GAP = 140;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
+
     static StudentLoginForm frame;
     private JPanel contentPane;
-    private JTextField textField;
-    private JTextField idField;
+    private JTextField textFieldName;
+    private JTextField textFieldID;
 
     /**
      * Launch the application.
@@ -48,25 +55,25 @@ public class StudentLoginForm extends JFrame {
      */
     public StudentLoginForm() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 260, 180);
+        //setBounds(100, 100, 260, 180);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        Util.customizeFrame(this);
+        //Util.customizeFrame(this);
 
-        JLabel lblEnterId = new JLabel("ID");
+        JLabel lbId = new JLabel("ID");
 
-        JLabel lblEnterName = new JLabel("Name");
+        JLabel lblName = new JLabel("Name");
 
-        textField = new JTextField();
-        textField.setColumns(10);
-        idField = new JTextField();
+        textFieldName = new JTextField();
+        textFieldName.setColumns(10);
+        textFieldID = new JTextField();
 
         JButton btnLogin = new JButton("Login");
         btnLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String name = textField.getText();
-                String id = idField.getText();
+                String name = textFieldName.getText();
+                String id = textFieldID.getText();
                 //System.out.println(name+" "+password);
                 if (StudentDao.validate(id, name)) {
                     Cache.add("student_id", id);
@@ -75,45 +82,44 @@ public class StudentLoginForm extends JFrame {
                     frame.dispose();
                 } else {
                     JOptionPane.showMessageDialog(StudentLoginForm.this, "Sorry, name or id does not exist", "Login Error!", JOptionPane.ERROR_MESSAGE);
-                    textField.setText("");
-                    idField.setText("");
+                    textFieldName.setText("");
+                    textFieldID.setText("");
                 }
             }
         });
 
-
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
-        gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.CENTER)
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addContainerGap()
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(lblEnterName)
-                                                        .addComponent(lblEnterId))
-                                                .addGap(20)
+                                                        .addComponent(lblName)
+                                                        .addComponent(lbId))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                        .addComponent(idField)
-                                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.DEFAULT_SIZE))
+                                                        .addComponent(textFieldID, GroupLayout.PREFERRED_SIZE, TEXTBOX_WIDTH, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(textFieldName, GroupLayout.PREFERRED_SIZE, TEXTBOX_WIDTH, GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.DEFAULT_SIZE)
         );
-        gl_contentPane.setVerticalGroup(
-                gl_contentPane.createParallelGroup(Alignment.LEADING)
+        gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                         .addGroup(gl_contentPane.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(lblEnterId)
-                                        .addComponent(idField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
+                                        .addComponent(lbId)
+                                        .addComponent(textFieldID))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(lblEnterName)
-                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(20)
-                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(80, Short.MAX_VALUE))
+                                        .addComponent(lblName)
+                                        .addComponent(textFieldName))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE)
+                        )
         );
         contentPane.setLayout(gl_contentPane);
+        
+        pack();
+        Util.customizeFrame(this);
     }
 }

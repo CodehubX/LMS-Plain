@@ -18,13 +18,20 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle;
 
 public class IssueBookForm extends JFrame {
 
+    private final int BUTTON_HEIGHT = 30;
+    private final int BUTTON_WIDTH = 80;
+    private final int MARGIN_GAP = 140;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
+
     static IssueBookForm frame;
     private JPanel contentPane;
-    private JTextField textField_1;
-    private JTextField textField_2;
+    private JTextField textFieldBookName;
+    private JTextField textFieldStudentId;
 
     /**
      * Launch the application.
@@ -49,28 +56,28 @@ public class IssueBookForm extends JFrame {
      */
     public IssueBookForm() {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 420, 210);
+        //setBounds(100, 100, 420, 210);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        Util.customizeFrame(this);
+        //Util.customizeFrame(this);
 
         JLabel lblBookName = new JLabel("Book ID");
 
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
+        textFieldBookName = new JTextField();
+        textFieldBookName.setColumns(10);
 
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
+        textFieldStudentId = new JTextField();
+        textFieldStudentId.setColumns(10);
 
         JLabel lblStudentId = new JLabel("Student ID");
 
-        JButton btnIssueBook = new JButton("Issue Book");
+        JButton btnIssueBook = new JButton("Issue");
         btnIssueBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                String bookId = textField_1.getText();
-                int studentId = Integer.parseInt(textField_2.getText());
+                String bookId = textFieldBookName.getText();
+                int studentId = Integer.parseInt(textFieldStudentId.getText());
                 String librarianId = Cache.get("librarianId");
                 if (IssueBookDao.save(bookId, studentId, Integer.parseInt(librarianId)) == 0) {
                     JOptionPane.showMessageDialog(IssueBookForm.this, "Book issued successfully!");
@@ -81,53 +88,42 @@ public class IssueBookForm extends JFrame {
             }
         });
 
-        JLabel lblNewLabel_1 = new JLabel("Note: Please check Student ID Carefully before issuing book!");
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        lblNewLabel_1.setForeground(Color.RED);
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
-        gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.CENTER)
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(lblBookName)
-                                                        .addComponent(lblStudentId))
-                                                .addGap(10)
-                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(48)
-                                        )
-                                        .addGroup(Alignment.CENTER, gl_contentPane.createSequentialGroup()
-                                                .addGap(20)
-                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
-                                                        .addComponent(lblNewLabel_1)
-                                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                                .addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(100)
-                                        )
+        gl_contentPane.setHorizontalGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
+                .addGroup(gl_contentPane.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(gl_contentPane.createParallelGroup(Alignment.CENTER)
+                                .addGroup(gl_contentPane.createSequentialGroup()
+                                        .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                .addComponent(lblBookName)
+                                                .addComponent(lblStudentId))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                .addComponent(textFieldStudentId, GroupLayout.PREFERRED_SIZE, TEXTBOX_WIDTH, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(textFieldBookName, GroupLayout.PREFERRED_SIZE, TEXTBOX_WIDTH, GroupLayout.PREFERRED_SIZE))
                                 )
+                                .addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
                         )
+                        .addContainerGap()
+                )
         );
-        gl_contentPane.setVerticalGroup(
-                gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(lblBookName)
-                                        .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(lblStudentId)
-                                        .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(20)
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                        .addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18)
-                                .addComponent(lblNewLabel_1)
-                                .addGap(20))
+        gl_contentPane.setVerticalGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                .addGroup(gl_contentPane.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                .addComponent(lblBookName)
+                                .addComponent(textFieldBookName))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                .addComponent(lblStudentId)
+                                .addComponent(textFieldStudentId))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnIssueBook, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE)
+                )
         );
         contentPane.setLayout(gl_contentPane);
+
+        pack();
+        Util.customizeFrame(this);
     }
 }

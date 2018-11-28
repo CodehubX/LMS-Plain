@@ -19,6 +19,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 
 public class ViewLibrarianList extends JFrame {
+    
+    private final int BUTTON_HEIGHT = 30;
+    private final int BUTTON_WIDTH = 110;
+    private final int MARGIN_GAP = 140;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
 
     private JPanel contentPane;
     private JTable table;

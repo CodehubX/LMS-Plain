@@ -17,8 +17,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.LayoutStyle;
 
 public class LibrarianLoginForm extends JFrame {
+
+    private final int BUTTON_HEIGHT = 30;
+    private final int BUTTON_WIDTH = 80;
+    private final int MARGIN_GAP = 140;
+    private final int LABEL_WIDTH = 60;
+    private final int TEXTBOX_WIDTH = 180;
 
     static LibrarianLoginForm frame;
     private JPanel contentPane;
@@ -48,13 +55,13 @@ public class LibrarianLoginForm extends JFrame {
      */
     public LibrarianLoginForm() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 360, 180);
+        //setBounds(100, 100, 360, 180);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        Util.customizeFrame(this);
+        //Util.customizeFrame(this);
 
-        JLabel lblEnterName = new JLabel("Id");
+        JLabel lblEnterName = new JLabel("ID");
 
         JLabel lblEnterPassword = new JLabel("Password");
 
@@ -82,23 +89,20 @@ public class LibrarianLoginForm extends JFrame {
         passwordField = new JPasswordField();
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-                gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                gl_contentPane.createParallelGroup(Alignment.CENTER)
                         .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                .addGap(19)
-                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(lblEnterName)
-                                                        .addComponent(lblEnterPassword))
-                                                .addGap(47)
-                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                        .addComponent(passwordField)
-                                                        .addComponent(textField, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
-                                .addContainerGap(107, Short.MAX_VALUE))
-                        .addGroup(gl_contentPane.createSequentialGroup()
-                                .addGap(130)
-                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-                                .addGap(220))
+                                .addContainerGap()
+                                .addGroup(gl_contentPane.createSequentialGroup()
+                                        .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                .addComponent(lblEnterName)
+                                                .addComponent(lblEnterPassword))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                .addComponent(passwordField, GroupLayout.DEFAULT_SIZE, TEXTBOX_WIDTH, Short.MAX_VALUE)
+                                                .addComponent(textField, GroupLayout.DEFAULT_SIZE, TEXTBOX_WIDTH, Short.MAX_VALUE)))
+                                .addContainerGap()
+                        )
+                        .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, BUTTON_WIDTH, GroupLayout.PREFERRED_SIZE)
         );
         gl_contentPane.setVerticalGroup(
                 gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -106,15 +110,17 @@ public class LibrarianLoginForm extends JFrame {
                                 .addContainerGap()
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblEnterName)
-                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(textField))
                                 .addGap(18)
                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblEnterPassword)
-                                        .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(passwordField))
                                 .addGap(20)
-                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(80, Short.MAX_VALUE))
+                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, BUTTON_HEIGHT, GroupLayout.PREFERRED_SIZE))
         );
         contentPane.setLayout(gl_contentPane);
+        
+        pack();
+        Util.customizeFrame(this);
     }
 }
